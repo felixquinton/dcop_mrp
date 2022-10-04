@@ -1,0 +1,36 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/fquinton/caf_ws/install/rlb_utils/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_sim_robots/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_robot/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_mission_spec/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_messages/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_interface/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_essential/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_sim_robots/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_robot/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_mission_spec/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_messages/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_interface/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_essential/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_environment/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/fquinton/caf_ws/install/rlb_utils/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_sim_robots/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_robot/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_mission_spec/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_messages/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_interface/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/patrol_essential/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_sim_robots/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_robot/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_mission_spec/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_messages/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_interface/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_essential/lib/python3.8/site-packages",
+        "/home/fquinton/caf_ws/install/caf_environment/lib/python3.8/site-packages",
+        "/opt/ros/foxy/lib/python3.8/site-packages"
+    ]
+}

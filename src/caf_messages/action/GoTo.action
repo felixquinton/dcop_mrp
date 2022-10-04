@@ -1,0 +1,18 @@
+# caf_messages/GoTo.action
+
+# Request
+string goal_id
+geometry_msgs/Point target_position
+
+---
+# Result
+string goal_id
+geometry_msgs/Point reached_position
+float64 total_travel_distance
+float64 total_travel_time
+
+---
+# Feedback
+geometry_msgs/Point current_position
+float64 remaining_distance
+float64 remaining_time
