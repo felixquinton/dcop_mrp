@@ -1,0 +1,38 @@
+{
+  "waypoint_1": {
+      "pos": [83, 44],
+      "neighbors": ["waypoint_2", "waypoint_8"]
+    },
+    "waypoint_2": {
+        "pos": [102, 357],
+        "neighbors": ["waypoint_1", "waypoint_3", "waypoint_7"]
+      },
+    "waypoint_3": {
+        "pos": [286, 377],
+        "neighbors": ["waypoint_2", "waypoint_4"]
+      },
+    "waypoint_4": {
+        "pos": [467, 289],
+        "neighbors": ["waypoint_3", "waypoint_5", "waypoint_7"]
+      },
+    "waypoint_5": {
+        "pos": [585, 323],
+        "neighbors": ["waypoint_4", "waypoint_6"]
+      },
+    "waypoint_6": {
+        "pos": [508, 80],
+        "neighbors": ["waypoint_5", "waypoint_7"]
+      },
+    "waypoint_7": {
+        "pos": [361, 225],
+        "neighbors": ["waypoint_6", "waypoint_8"]
+      },
+    "waypoint_8": {
+        "pos": [273, 72],
+        "neighbors": ["waypoint_7", "waypoint_1", "waypoint_9"]
+      },
+    "waypoint_9": {
+        "pos": [250, 120],
+        "neighbors": ["waypoint_8"]
+      }
+}

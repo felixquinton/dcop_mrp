@@ -1,0 +1,23 @@
+/**:
+  ros__parameters:
+    team_members_file_name: "team_spec.json"
+    robots_spec_file_name: "robots_spec_mh.json"
+    mission_spec_file_name: "mission_spec_demo.json"
+
+robot_1:
+  ros__parameters:
+    team_members_file_name: "team_spec.json"
+    robots_spec_file_name: "robots_spec_mh.json"
+    mission_spec_file_name: "mission_spec_demo.json"
+
+robot_2:
+  ros__parameters:
+    team_members_file_name: "team_spec.json"
+    robots_spec_file_name: "robots_spec_mh.json"
+    mission_spec_file_name: "mission_spec_demo.json"
+
+robot_3:
+  ros__parameters:
+    team_members_file_name: "team_spec.json"
+    robots_spec_file_name: "robots_spec_mh.json"
+    mission_spec_file_name: "mission_spec_demo.json"

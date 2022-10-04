@@ -1,0 +1,92 @@
+{
+  "robot_1": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_energy_cons": {"standby": 0.001157, "move": 0.1},
+    "com_range": 300.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [200.0, 150.0],
+    "idleness_save_file": "inst_5r_20w_02.csv"
+  },
+  "robot_2": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_energy_cons": {"standby": 0.001157, "move": 0.1},
+    "com_range": 300.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [200.0, 250.0],
+    "idleness_save_file": "inst_5r_20w_02.csv"
+  },
+  "robot_3": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_energy_cons": {"standby": 0.001157, "move": 0.1},
+    "com_range": 300.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [400.0, 150.0],
+    "idleness_save_file": "inst_5r_20w_02.csv"
+  },
+  "robot_4": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_energy_cons": {"standby": 0.001157, "move": 0.1},
+    "com_range": 300.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [400.0, 250.0],
+    "idleness_save_file": "inst_5r_20w_02.csv"
+  },
+  "robot_5": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_energy_cons": {"standby": 0.001157, "move": 0.1},
+    "com_range": 300.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [300.0, 150.0],
+    "idleness_save_file": "inst_5r_20w_02.csv"
+  }
+}

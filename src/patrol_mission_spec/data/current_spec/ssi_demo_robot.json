@@ -1,0 +1,34 @@
+{
+  "robot_1": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_energy_cons": {"standby": 0.001157, "move": 0.01},
+    "com_range": 721.0,
+    "com_stable": "auction",
+    "com_relay": false,
+    "robot_spawn_pos": [300.0, 50.0]
+  },
+  "robot_2": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_energy_cons": {"standby": 0.001157, "move": 0.01},
+    "com_range": 721.0,
+    "com_stable": "auction",
+    "com_relay": false,
+    "robot_spawn_pos": [450.0, 150.0]
+  }
+}

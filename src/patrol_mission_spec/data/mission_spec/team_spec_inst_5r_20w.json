@@ -1,0 +1,121 @@
+{
+  "robot_1" : {
+    "id" : "robot_1",
+    "robot_type" : "UGV-LIGHT",
+    "robot_spawn_pos": [50.0, 150.0],
+    "waypoint_blacklist": [
+        1,
+        6,
+        11,
+        16,
+        21,
+        26,
+        31,
+        36,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40
+    ]
+  },
+
+  "robot_2" : {
+    "id" : "robot_2",
+    "robot_type" : "TUGV",
+    "robot_spawn_pos": [50.0, 150.0],
+    "waypoint_blacklist": [
+        2,
+        7,
+        12,
+        17,
+        22,
+        27,
+        32,
+        37,
+        1,
+        6,
+        11,
+        16,
+        21,
+        26,
+        31,
+        36
+    ]
+  },
+
+  "robot_3": {
+    "id" : "robot_3",
+    "robot_type" : "UGV-LIGHT",
+    "robot_spawn_pos": [50.0, 150.0],
+    "waypoint_blacklist": [
+        3,
+        8,
+        13,
+        18,
+        23,
+        28,
+        33,
+        38,
+        2,
+        7,
+        12,
+        17,
+        22,
+        27,
+        32,
+        37
+    ]
+  },
+
+  "robot_4": {
+    "id" : "robot_4",
+    "robot_type" : "UGV-FULL",
+    "robot_spawn_pos": [50.0, 150.0],
+    "waypoint_blacklist": [
+        4,
+        9,
+        14,
+        19,
+        24,
+        29,
+        34,
+        39,
+        3,
+        8,
+        13,
+        18,
+        23,
+        28,
+        33,
+        38
+    ]
+  },
+
+  "robot_5": {
+    "id" : "robot_5",
+    "robot_type" : "UGV-FULL",
+    "robot_spawn_pos": [50.0, 150.0],
+    "waypoint_blacklist": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35,
+        40,
+        4,
+        9,
+        14,
+        19,
+        24,
+        29,
+        34,
+        39
+    ]
+  }
+}

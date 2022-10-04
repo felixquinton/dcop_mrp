@@ -1,0 +1,82 @@
+{
+  "waypoint_1": {
+      "pos": [100, 50],
+      "neighbors": ["waypoint_2"]
+    },
+    "waypoint_2": {
+        "pos": [200, 50],
+        "neighbors": ["waypoint_3", "waypoint_7", "waypoint_8", "waypoint_12"]
+      },
+    "waypoint_3": {
+        "pos": [300, 50],
+        "neighbors": ["waypoint_4", "waypoint_9"]
+      },
+    "waypoint_4": {
+        "pos": [400, 50],
+        "neighbors": ["waypoint_5", "waypoint_10", "waypoint_13"]
+      },
+    "waypoint_5": {
+        "pos": [500, 50],
+        "neighbors": ["waypoint_14", "waypoint_6"]
+      },
+    "waypoint_6": {
+        "pos": [100, 150],
+        "neighbors": ["waypoint_15", "waypoint_7"]
+      },
+    "waypoint_7": {
+        "pos": [200, 150],
+        "neighbors": ["waypoint_11"]
+      },
+    "waypoint_8": {
+        "pos": [300, 150],
+        "neighbors": []
+      },
+    "waypoint_9": {
+        "pos": [400, 150],
+        "neighbors": ["waypoint_10", "waypoint_16"]
+      },
+    "waypoint_10": {
+        "pos": [500, 150],
+        "neighbors": ["waypoint_11", "waypoint_17"]
+      },
+    "waypoint_11": {
+        "pos": [100, 250],
+        "neighbors": ["waypoint_18"]
+      },
+    "waypoint_12": {
+        "pos": [200, 250],
+        "neighbors": ["waypoint_7", "waypoint_19"]
+      },
+    "waypoint_13": {
+        "pos": [300, 250],
+        "neighbors": ["waypoint_20"]
+      },
+    "waypoint_14": {
+        "pos": [400, 250],
+        "neighbors": []
+      },
+    "waypoint_15": {
+        "pos": [500, 250],
+        "neighbors": []
+      },
+    "waypoint_16": {
+        "pos": [100, 350],
+        "neighbors": ["waypoint_17"]
+      },
+    "waypoint_17": {
+        "pos": [200, 350],
+        "neighbors": ["waypoint_18"]
+      },
+    "waypoint_18": {
+        "pos": [300, 350],
+        "neighbors": ["waypoint_5"]
+      },
+    "waypoint_19": {
+        "pos": [400, 350],
+        "neighbors": ["waypoint_7"]
+      },
+    "waypoint_20": {
+        "pos": [500, 350],
+        "neighbors": ["waypoint_19"]
+      }
+}

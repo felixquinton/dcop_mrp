@@ -1,0 +1,70 @@
+{
+  "robot_1" : {
+    "id" : "robot_1",
+    "robot_type" : "UGV-LIGHT",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_2" : {
+    "id" : "robot_2",
+    "robot_type" : "TUGV",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_3": {
+    "id" : "robot_3",
+    "robot_type" : "UGV-LIGHT",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_4": {
+    "id" : "robot_4",
+    "robot_type" : "UGV-FULL",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_5": {
+    "id" : "robot_5",
+    "robot_type" : "UGV-FULL",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+  "robot_6" : {
+    "id" : "robot_6",
+    "robot_type" : "UGV-LIGHT",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_7" : {
+    "id" : "robot_7",
+    "robot_type" : "TUGV",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_8": {
+    "id" : "robot_8",
+    "robot_type" : "UGV-LIGHT",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_9": {
+    "id" : "robot_9",
+    "robot_type" : "UGV-FULL",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  },
+
+  "robot_10": {
+    "id" : "robot_10",
+    "robot_type" : "UGV-FULL",
+    "robot_spawn_pos": [100.0, 100.0],
+    "waypoint_blacklist": []
+  }
+}

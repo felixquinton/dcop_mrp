@@ -1,0 +1,339 @@
+{
+    "directed": false,
+    "graph": {
+        "frame": "",
+        "site": ""
+    },
+    "links": [
+        {
+            "cost": 1.0,
+            "distance": 26.739987938545603,
+            "source": 0,
+            "target": 1
+        },
+        {
+            "cost": 1.0,
+            "distance": 22.16027934237464,
+            "source": 1,
+            "target": 2
+        },
+        {
+            "cost": 1.0,
+            "distance": 26.05555951795991,
+            "source": 2,
+            "target": 3
+        },
+        {
+            "cost": 1.0,
+            "distance": 70.76782069324345,
+            "source": 3,
+            "target": 4
+        },
+        {
+            "cost": 1.0,
+            "distance": 51.37688107583217,
+            "source": 4,
+            "target": 5
+        },
+        {
+            "cost": 1.0,
+            "distance": 55.66939304490292,
+            "source": 5,
+            "target": 6
+        },
+        {
+            "cost": 1.0,
+            "distance": 57.580209589448174,
+            "source": 6,
+            "target": 7
+        },
+        {
+            "cost": 1.0,
+            "distance": 50.34751461131118,
+            "source": 7,
+            "target": 8
+        },
+        {
+            "cost": 1.0,
+            "distance": 45.128543100805935,
+            "source": 8,
+            "target": 9
+        },
+        {
+            "cost": 1.0,
+            "distance": 56.84377625471289,
+            "source": 9,
+            "target": 10
+        },
+        {
+            "cost": 1.0,
+            "distance": 23.590303963999744,
+            "source": 10,
+            "target": 11
+        },
+        {
+            "cost": 1.0,
+            "distance": 61.06855348301506,
+            "source": 11,
+            "target": 12
+        },
+        {
+            "cost": 1.0,
+            "distance": 54.06819820369063,
+            "source": 12,
+            "target": 13
+        },
+        {
+            "cost": 1.0,
+            "distance": 43.669568873147824,
+            "source": 13,
+            "target": 14
+        },
+        {
+            "cost": 1.0,
+            "distance": 29.022682653245443,
+            "source": 14,
+            "target": 15
+        },
+        {
+            "cost": 1.0,
+            "distance": 42.89693501587514,
+            "source": 15,
+            "target": 16
+        },
+        {
+            "cost": 1.0,
+            "distance": 45.97858199311892,
+            "source": 17,
+            "target": 18
+        },
+        {
+            "cost": 1.0,
+            "distance": 24.11981701877957,
+            "source": 18,
+            "target": 19
+        },
+        {
+            "cost": 1.0,
+            "distance": 26.814146025186183,
+            "source": 19,
+            "target": 20
+        },
+        {
+            "cost": 1.0,
+            "distance": 47.771297249389896,
+            "source": 7,
+            "target": 10
+        },
+        {
+            "cost": 1.0,
+            "distance": 54.54952563088879,
+            "source": 5,
+            "target": 10
+        },
+        {
+            "cost": 1.0,
+            "distance": 33.29822843067012,
+            "source": 13,
+            "target": 16
+        },
+        {
+            "cost": 1.0,
+            "distance": 42.932903069958,
+            "source": 13,
+            "target": 19
+        },
+        {
+            "cost": 1.0,
+            "distance": 37.51068619752239,
+            "source": 11,
+            "target": 20
+        },
+        {
+            "cost": 1.0,
+            "distance": 73.45537914125961,
+            "source": 4,
+            "target": 11
+        },
+        {
+            "cost": 1.0,
+            "distance": 38.25358878117124,
+            "source": 4,
+            "target": 17
+        },
+        {
+            "cost": 1.0,
+            "distance": 29.13113212948981,
+            "source": 17,
+            "target": 20
+        },
+        {
+            "cost": 1.0,
+            "distance": 23.248267234880647,
+            "source": 9,
+            "target": 12
+        },
+        {
+            "cost": 1.0,
+            "distance": 76.41384479643902,
+            "source": 0,
+            "target": 4
+        },
+        {
+            "cost": 1.0,
+            "distance": 27.409105349423488,
+            "source": 1,
+            "target": 3
+        }
+    ],
+    "multigraph": false,
+    "nodes": [
+        {
+            "altitude": -1.0,
+            "id": 0,
+            "latitude": 44.274773887863994,
+            "longitude": 1.7267632484436035,
+            "name": "n_000"
+        },
+        {
+            "altitude": -1.0,
+            "id": 1,
+            "latitude": 44.27498897922424,
+            "longitude": 1.7269134521484375,
+            "name": "n_001"
+        },
+        {
+            "altitude": 0.0,
+            "id": 2,
+            "latitude": 44.27516566082407,
+            "longitude": 1.7272138595581055,
+            "name": "n_002"
+        },
+        {
+            "altitude": 0.0,
+            "id": 3,
+            "latitude": 44.27486606997193,
+            "longitude": 1.7272567749023438,
+            "name": "n_003"
+        },
+        {
+            "altitude": -1.0,
+            "id": 4,
+            "latitude": 44.274389794191066,
+            "longitude": 1.7275571823120117,
+            "name": "n_004"
+        },
+        {
+            "altitude": -1.0,
+            "id": 5,
+            "latitude": 44.274620250696074,
+            "longitude": 1.7281150817871094,
+            "name": "n_005"
+        },
+        {
+            "altitude": -1.0,
+            "id": 6,
+            "latitude": 44.27498897922424,
+            "longitude": 1.7285871505737305,
+            "name": "n_006"
+        },
+        {
+            "altitude": -1.0,
+            "id": 7,
+            "latitude": 44.27459720508625,
+            "longitude": 1.7290592193603516,
+            "name": "n_007"
+        },
+        {
+            "altitude": -1.0,
+            "id": 8,
+            "latitude": 44.274251519854275,
+            "longitude": 1.7294669151306152,
+            "name": "n_008"
+        },
+        {
+            "altitude": -1.0,
+            "id": 9,
+            "latitude": 44.27392887846977,
+            "longitude": 1.729123592376709,
+            "name": "n_009"
+        },
+        {
+            "altitude": -1.0,
+            "id": 10,
+            "latitude": 44.27429761133602,
+            "longitude": 1.7286300659179688,
+            "name": "n_010"
+        },
+        {
+            "altitude": -1.0,
+            "id": 11,
+            "latitude": 44.274151654853114,
+            "longitude": 1.7284154891967773,
+            "name": "n_011"
+        },
+        {
+            "altitude": -1.0,
+            "id": 12,
+            "latitude": 44.27375987513286,
+            "longitude": 1.7289519309997559,
+            "name": "n_012"
+        },
+        {
+            "altitude": -1.0,
+            "id": 13,
+            "latitude": 44.27338345686293,
+            "longitude": 1.728522777557373,
+            "name": "n_013"
+        },
+        {
+            "altitude": -1.0,
+            "id": 14,
+            "latitude": 44.273160677567475,
+            "longitude": 1.728973388671875,
+            "name": "n_014"
+        },
+        {
+            "altitude": -1.0,
+            "id": 15,
+            "latitude": 44.27297630785669,
+            "longitude": 1.7287158966064453,
+            "name": "n_015"
+        },
+        {
+            "altitude": -1.0,
+            "id": 16,
+            "latitude": 44.273160677567475,
+            "longitude": 1.7282438278198242,
+            "name": "n_016"
+        },
+        {
+            "altitude": -1.0,
+            "id": 17,
+            "latitude": 44.27409019938345,
+            "longitude": 1.7277932167053223,
+            "name": "n_017"
+        },
+        {
+            "altitude": -1.0,
+            "id": 18,
+            "latitude": 44.27369073726403,
+            "longitude": 1.7279434204101563,
+            "name": "n_018"
+        },
+        {
+            "altitude": -1.0,
+            "id": 19,
+            "latitude": 44.273713783229354,
+            "longitude": 1.7282438278198242,
+            "name": "n_019"
+        },
+        {
+            "altitude": -1.0,
+            "id": 20,
+            "latitude": 44.27392119651045,
+            "longitude": 1.728072166442871,
+            "name": "n_020"
+        }
+    ]
+}

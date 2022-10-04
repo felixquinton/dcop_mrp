@@ -1,0 +1,24 @@
+simulation_robots_node:
+  ros__parameters:
+
+    #use default
+#    team_members_file_name: "team_spec.json"
+#    robots_spec_file_name: "robots_spec_mh.json"
+
+    # WARNING, this custom parameter, even if not used, seems to apply a sim time on node (because of its name ?)
+    #use_sim_time: true
+
+    robot_1:
+      spawn_position:
+        x: 83.0
+        y: 44.0
+
+    robot_2:
+      spawn_position:
+        x: 286.0
+        y: 377.0
+
+    robot_3:
+      spawn_position:
+        x: 508.0
+        y: 80.0

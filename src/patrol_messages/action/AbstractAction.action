@@ -1,0 +1,14 @@
+# caf_messages/GoTo.action
+
+# Request
+string goal_id
+float64 target_duration  # optional, in this case simulation will use a random
+
+---
+# Result
+string goal_id
+float64 total_duration
+
+---
+# Feedback
+float64 remaining_duration

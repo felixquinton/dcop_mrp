@@ -1,0 +1,26 @@
+{
+  "waypoint_1": {
+      "pos": [300, 50],
+      "neighbors": ["waypoint_2"]
+    },
+    "waypoint_2": {
+        "pos": [300, 150],
+        "neighbors": ["waypoint_1", "waypoint_5", "waypoint_3"]
+      },
+    "waypoint_3": {
+        "pos": [200, 250],
+        "neighbors": ["waypoint_2", "waypoint_4"]
+      },
+    "waypoint_4": {
+        "pos": [100, 250],
+        "neighbors": ["waypoint_3"]
+      },
+    "waypoint_5": {
+        "pos": [350, 150],
+        "neighbors": ["waypoint_2", "waypoint_6"]
+      },
+    "waypoint_6": {
+        "pos": [450, 150],
+        "neighbors": ["waypoint_5"]
+      }
+}

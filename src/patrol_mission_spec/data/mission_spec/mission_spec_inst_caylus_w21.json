@@ -1,0 +1,159 @@
+{
+  "graph": {
+    "waypoint_1": {
+      "pos": [11.995099054774107, 220.2225766033877],
+      "neighbors": ["waypoint_2", "waypoint_5"]
+    },
+    "waypoint_2": {
+        "pos": [23.986538891713682, 244.1230436442417],
+        "neighbors": ["waypoint_3", "waypoint_4"]
+      },
+    "waypoint_3": {
+        "pos": [47.96936985130062, 263.7556514400387],
+        "neighbors": ["waypoint_4"]
+      },
+    "waypoint_4": {
+        "pos": [51.39575941187576, 230.4658571821343],
+        "neighbors": ["waypoint_5"]
+      },
+    "waypoint_5": {
+        "pos": [75.37937735745984, 177.54343720470342],
+        "neighbors": ["waypoint_6", "waypoint_12", "waypoint_18"]
+      },
+    "waypoint_6": {
+        "pos": [119.91915745825732, 203.15187127554503],
+        "neighbors": ["waypoint_11", "waypoint_7"]
+      },
+    "waypoint_7": {
+        "pos": [157.6059274393554, 244.12489514835534],
+        "neighbors": ["waypoint_8"]
+      },
+    "waypoint_8": {
+        "pos": [195.29474477220754, 200.59291168578133],
+        "neighbors": ["waypoint_9", "waypoint_11"]
+      },
+    "waypoint_9": {
+        "pos": [227.84460925020855, 162.18225496138137],
+        "neighbors": ["waypoint_10"]
+      },
+    "waypoint_10": {
+        "pos": [200.43625780123625, 126.33023032881215],
+        "neighbors": ["waypoint_11", "waypoint_13"]
+      },
+    "waypoint_11": {
+        "pos": [161.03395362409879, 167.3018464111604],
+        "neighbors": ["waypoint_12"]
+      },
+    "waypoint_12": {
+        "pos": [143.9034181217332, 151.08311668738466],
+        "neighbors": ["waypoint_21", "waypoint_13"]
+      },
+    "waypoint_13": {
+        "pos": [186.7319939241944, 107.55058495316885],
+        "neighbors": ["waypoint_14"]
+      },
+    "waypoint_14": {
+        "pos": [152.47087137748292, 65.72301585519112],
+        "neighbors": ["waypoint_15", "waypoint_17", "waypoint_20"]
+      },
+    "waypoint_15": {
+        "pos": [188.447013503424, 40.96925972133464],
+        "neighbors": ["waypoint_16"]
+      },
+    "waypoint_16": {
+        "pos": [167.89007204240679, 20.481988899981133],
+        "neighbors": ["waypoint_17"]
+      },
+    "waypoint_17": {
+        "pos": [130.20085882110038, 40.96784352960426],
+        "neighbors": []
+      },
+    "waypoint_18": {
+        "pos": [94.2238074645027, 144.25343107327961],
+        "neighbors": ["waypoint_19", "waypoint_21"]
+      },
+    "waypoint_19": {
+        "pos": [106.21619333190526, 99.86635319169457],
+        "neighbors": ["waypoint_20"]
+      },
+    "waypoint_20": {
+        "pos": [130.19963763003665, 102.42759749537544],
+        "neighbors": ["waypoint_21"]
+      },
+    "waypoint_21": {
+        "pos": [116.49437885395302, 125.47459966309174],
+        "neighbors": []
+      }
+    },
+    "time_factor": 1.0,
+    "simu_period": 0.1,
+    "edge_events": [
+      {"event_date": 150.0,
+        "event_edge": [6, 11],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 200.0,
+        "event_edge": [10, 11],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 250.0,
+        "event_edge": [5, 12],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 300.0,
+        "event_edge": [12, 13],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 350.0,
+        "event_edge": [8, 11],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 400.0,
+        "event_edge": [15, 16],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      }
+    ],
+    "node_events": [
+      {"event_date": 0.0,
+        "event_node": 6,
+        "event_type": "edit_sensors",
+        "sensor_types": ["impossible"]
+      },
+      {"event_date": 0.0,
+        "event_node": 4,
+        "event_type": "edit_sensors",
+        "sensor_types": ["impossible"]
+      },
+      {"event_date": 0.0,
+        "event_node": 18,
+        "event_type": "edit_sensors",
+        "sensor_types": ["impossible"]
+      },
+      {"event_date": 200.0,
+        "event_node": 19,
+        "event_type": "edit_sensors",
+        "sensor_types": ["night_camera", "lidar"]
+      },
+      {"event_date": 250.0,
+        "event_node": 3,
+        "event_type": "edit_sensors",
+        "sensor_types": ["night_camera", "lidar"]
+      },
+      {"event_date": 300.0,
+        "event_node": 1,
+        "event_type": "edit_sensors",
+        "sensor_types": ["lidar"]
+      },
+      {"event_date": 350.0,
+        "event_node": 5,
+        "event_type": "edit_sensors",
+        "sensor_types": ["lidar"]
+      }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+  "robot_1": {
+    "actions": [
+      "Wait",
+      "StayOnPosition",
+      "GoTo",
+      "Dive",
+      "Rise",
+      "Relocalize",
+      "SendInformation",
+      "IdentifyTarget",
+      "Cover",
+      "Recharge"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_spawn_pos": [83.0, 44.0]
+  },
+  "robot_2": {
+    "actions": [
+      "Wait",
+      "StayOnPosition",
+      "GoTo",
+      "Dive",
+      "Rise",
+      "Relocalize",
+      "SendInformation",
+      "IdentifyTarget",
+      "Cover",
+      "Recharge"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100,
+    "robot_spawn_pos": [286.0, 377.0]
+  }
+}

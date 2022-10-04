@@ -1,0 +1,10 @@
+simulation_robots_node:
+  ros__parameters:
+
+    #use default
+    team_members_file_name: "team_spec_inst_5r_20w.json"
+    robots_spec_file_name: "robots_spec_inst_5r_20w_01.json"
+    mission_spec_file_path: "mission_spec_inst_5r_20w_01.json"
+
+    # WARNING, this custom parameter, even if not used, seems to apply a sim time on node (because of its name ?)
+    #use_sim_time: true

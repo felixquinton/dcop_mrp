@@ -1,0 +1,225 @@
+{
+  "graph": {
+    "waypoint_1": {
+      "pos": [10, 150],
+      "neighbors": ["waypoint_2"]
+    },
+    "waypoint_2": {
+        "pos": [50, 150],
+        "neighbors": ["waypoint_3", "waypoint_8", "waypoint_12"]
+      },
+    "waypoint_3": {
+        "pos": [90, 150],
+        "neighbors": ["waypoint_4", "waypoint_9"]
+      },
+    "waypoint_4": {
+        "pos": [125, 150],
+        "neighbors": ["waypoint_5", "waypoint_10", "waypoint_13"]
+      },
+    "waypoint_5": {
+        "pos": [160, 150],
+        "neighbors": ["waypoint_14", "waypoint_6"]
+      },
+    "waypoint_6": {
+        "pos": [200, 150],
+        "neighbors": ["waypoint_15", "waypoint_7"]
+      },
+    "waypoint_7": {
+        "pos": [240, 150],
+        "neighbors": ["waypoint_11"]
+      },
+    "waypoint_8": {
+        "pos": [50, 183],
+        "neighbors": []
+      },
+    "waypoint_9": {
+        "pos": [90, 198],
+        "neighbors": ["waypoint_10", "waypoint_16"]
+      },
+    "waypoint_10": {
+        "pos": [125, 201],
+        "neighbors": ["waypoint_11", "waypoint_17"]
+      },
+    "waypoint_11": {
+        "pos": [240, 191],
+        "neighbors": ["waypoint_18"]
+      },
+    "waypoint_12": {
+        "pos": [50, 110],
+        "neighbors": []
+      },
+    "waypoint_13": {
+        "pos": [125, 100],
+        "neighbors": []
+      },
+    "waypoint_14": {
+        "pos": [160, 110],
+        "neighbors": []
+      },
+    "waypoint_15": {
+        "pos": [200, 100],
+        "neighbors": []
+      },
+    "waypoint_16": {
+        "pos": [90, 235],
+        "neighbors": ["waypoint_17"]
+      },
+    "waypoint_17": {
+        "pos": [125, 225],
+        "neighbors": ["waypoint_18"]
+      },
+    "waypoint_18": {
+        "pos": [240, 225],
+        "neighbors": []
+      },
+    "waypoint_19": {
+        "pos": [275, 150],
+        "neighbors": ["waypoint_7", "waypoint_21"]
+      },
+    "waypoint_20": {
+        "pos": [290, 200],
+        "neighbors": ["waypoint_19", "waypoint_21"]
+      },
+      "waypoint_21": {
+        "pos": [310, 150],
+        "neighbors": ["waypoint_22"]
+      },
+      "waypoint_22": {
+        "pos": [350, 150],
+        "neighbors": ["waypoint_23", "waypoint_28", "waypoint_32"]
+      },
+      "waypoint_23": {
+        "pos": [390, 150],
+        "neighbors": ["waypoint_24", "waypoint_29"]
+      },
+      "waypoint_24": {
+        "pos": [425, 150],
+        "neighbors": ["waypoint_25", "waypoint_30", "waypoint_33"]
+      },
+      "waypoint_25": {
+        "pos": [460, 150],
+        "neighbors": ["waypoint_34", "waypoint_26"]
+      },
+      "waypoint_26": {
+        "pos": [500, 150],
+        "neighbors": ["waypoint_35", "waypoint_27"]
+      },
+      "waypoint_27": {
+        "pos": [540, 150],
+        "neighbors": ["waypoint_31"]
+      },
+      "waypoint_28": {
+        "pos": [350, 166],
+        "neighbors": []
+      },
+      "waypoint_29": {
+        "pos": [390, 175],
+        "neighbors": ["waypoint_30", "waypoint_36"]
+      },
+      "waypoint_30": {
+        "pos": [425, 175],
+        "neighbors": ["waypoint_31", "waypoint_37"]
+      },
+      "waypoint_31": {
+        "pos": [540, 170],
+        "neighbors": ["waypoint_38"]
+      },
+      "waypoint_32": {
+        "pos": [350, 110],
+        "neighbors": []
+      },
+      "waypoint_33": {
+        "pos": [425, 100],
+        "neighbors": []
+      },
+      "waypoint_34": {
+        "pos": [460, 110],
+        "neighbors": []
+      },
+      "waypoint_35": {
+        "pos": [500, 100],
+        "neighbors": []
+      },
+      "waypoint_36": {
+        "pos": [390, 235],
+        "neighbors": ["waypoint_37"]
+      },
+      "waypoint_37": {
+        "pos": [425, 225],
+        "neighbors": ["waypoint_38"]
+      },
+      "waypoint_38": {
+        "pos": [540, 225],
+        "neighbors": []
+      },
+      "waypoint_39": {
+        "pos": [575, 150],
+        "neighbors": ["waypoint_27"]
+      },
+      "waypoint_40": {
+        "pos": [590, 200],
+        "neighbors": ["waypoint_39"]
+      }
+    },
+    "time_factor": 1.0,
+    "simu_period": 0.1,
+    "edge_events": [
+      {"event_date": 150.0,
+        "event_edge": [17, 18],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 200.0,
+        "event_edge": [5, 6],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 250.0,
+        "event_edge": [24, 30],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 300.0,
+        "event_edge": [30, 37],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 350.0,
+        "event_edge": [30, 31],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      },
+      {"event_date": 400.0,
+        "event_edge": [9, 10],
+        "event_type": "remove",
+        "robot_types": ["UGV-FULL", "UGV-LIGHT"]
+      }
+    ],
+    "node_events": [
+      {"event_date": 100.0,
+        "event_node": 15,
+        "event_type": "edit_sensors",
+        "sensor_types": ["night_camera", "lidar"]
+      },
+      {"event_date": 200.0,
+        "event_node": 32,
+        "event_type": "edit_sensors",
+        "sensor_types": ["night_camera", "lidar"]
+      },
+      {"event_date": 250.0,
+        "event_node": 34,
+        "event_type": "edit_sensors",
+        "sensor_types": ["night_camera", "lidar"]
+      },
+      {"event_date": 300.0,
+        "event_node": 16,
+        "event_type": "edit_sensors",
+        "sensor_types": ["lidar"]
+      },
+      {"event_date": 350.0,
+        "event_node": 38,
+        "event_type": "edit_sensors",
+        "sensor_types": ["lidar"]
+      }
+    ]
+}

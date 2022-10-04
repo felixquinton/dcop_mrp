@@ -1,0 +1,5 @@
+interface_node:
+  ros__parameters:
+    team_members_file_name: "team_spec.json"
+    robots_spec_file_name: "default_robots_spec.json"
+    mission_spec_file_name: "mission_spec_demo.json"

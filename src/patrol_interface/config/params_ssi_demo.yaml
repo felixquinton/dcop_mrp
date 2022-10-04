@@ -1,0 +1,5 @@
+interface_node:
+  ros__parameters:
+    team_members_file_name: "ssi_demo_team_spec.json"
+    robots_spec_file_name: "ssi_demo_robot.json"
+    mission_spec_file_path: "ssi_demo_mission_spec.json"

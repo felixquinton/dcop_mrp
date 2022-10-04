@@ -1,0 +1,82 @@
+{
+  "waypoint_1": {
+      "pos": [100, 150],
+      "neighbors": ["waypoint_2"]
+    },
+    "waypoint_2": {
+        "pos": [166, 150],
+        "neighbors": ["waypoint_3", "waypoint_8", "waypoint_12"]
+      },
+    "waypoint_3": {
+        "pos": [216, 150],
+        "neighbors": ["waypoint_4", "waypoint_9"]
+      },
+    "waypoint_4": {
+        "pos": [254, 150],
+        "neighbors": ["waypoint_5", "waypoint_10", "waypoint_13"]
+      },
+    "waypoint_5": {
+        "pos": [319, 150],
+        "neighbors": ["waypoint_14", "waypoint_6"]
+      },
+    "waypoint_6": {
+        "pos": [352, 150],
+        "neighbors": ["waypoint_15", "waypoint_7"]
+      },
+    "waypoint_7": {
+        "pos": [440, 150],
+        "neighbors": ["waypoint_11"]
+      },
+    "waypoint_8": {
+        "pos": [166, 227],
+        "neighbors": []
+      },
+    "waypoint_9": {
+        "pos": [216, 257],
+        "neighbors": ["waypoint_10", "waypoint_16"]
+      },
+    "waypoint_10": {
+        "pos": [254, 253],
+        "neighbors": ["waypoint_11", "waypoint_17"]
+      },
+    "waypoint_11": {
+        "pos": [440, 233],
+        "neighbors": ["waypoint_18"]
+      },
+    "waypoint_12": {
+        "pos": [166, 67],
+        "neighbors": ["waypoint_19"]
+      },
+    "waypoint_13": {
+        "pos": [254, 50],
+        "neighbors": ["waypoint_20"]
+      },
+    "waypoint_14": {
+        "pos": [319, 68],
+        "neighbors": []
+      },
+    "waypoint_15": {
+        "pos": [352, 54],
+        "neighbors": []
+      },
+    "waypoint_16": {
+        "pos": [216, 326],
+        "neighbors": ["waypoint_17"]
+      },
+    "waypoint_17": {
+        "pos": [254, 301],
+        "neighbors": ["waypoint_18"]
+      },
+    "waypoint_18": {
+        "pos": [440, 297],
+        "neighbors": ["waypoint_5"]
+      },
+    "waypoint_19": {
+        "pos": [500, 150],
+        "neighbors": ["waypoint_7"]
+      },
+    "waypoint_20": {
+        "pos": [550, 250],
+        "neighbors": ["waypoint_19"]
+      }
+}

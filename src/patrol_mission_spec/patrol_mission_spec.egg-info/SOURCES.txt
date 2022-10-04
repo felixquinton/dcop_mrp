@@ -1,0 +1,108 @@
+package.xml
+setup.cfg
+setup.py
+data/current_spec/default_robots_spec.json
+data/current_spec/default_team_spec.json
+data/current_spec/mission_spec_demo.json
+data/current_spec/mission_spec_inst_3r_18w_01.json
+data/current_spec/mission_spec_inst_5r_20w_01.json
+data/current_spec/mission_spec_inst_5r_20w_010.json
+data/current_spec/mission_spec_inst_5r_20w_02.json
+data/current_spec/mission_spec_inst_5r_20w_020.json
+data/current_spec/robots_spec_inst_10r_20w_01.json
+data/current_spec/robots_spec_inst_3r_18w_01.json
+data/current_spec/robots_spec_inst_5r_20w_01.json
+data/current_spec/robots_spec_inst_5r_20w_02.json
+data/current_spec/robots_spec_mh.json
+data/current_spec/ssi_demo_mission_spec.json
+data/current_spec/ssi_demo_robot.json
+data/current_spec/ssi_demo_team_spec.json
+data/current_spec/team_spec.json
+data/current_spec/team_spec_inst_10r_20w.json
+data/current_spec/team_spec_inst_5r_20w.json
+data/current_spec/team_spec_inst_5r_20w0.json
+data/current_spec/team_spec_inst_5r_20w1.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_0/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_1/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_10/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_11/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_12/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_13/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_14/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_15/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_16/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_17/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_18/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_19/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_2/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_20/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_21/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_22/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_23/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_24/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_25/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_26/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_27/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_28/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_29/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_3/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_30/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_31/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_32/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_33/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_34/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_35/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_36/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_37/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_38/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_39/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_4/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_40/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_41/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_42/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_43/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_44/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_45/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_46/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_47/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_48/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_49/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_5/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_6/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_7/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_8/data.json
+data/generated_scenarios/grid_graphs_dim=(5, 5)_obsprop=0.25/scenario_9/data.json
+data/mission_spec/caylus_w21.json
+data/mission_spec/default_team_spec.json
+data/mission_spec/mission_spec_default.json
+data/mission_spec/mission_spec_demo.json
+data/mission_spec/mission_spec_inst_3r_18w_01.json
+data/mission_spec/mission_spec_inst_5r_20w_01.json
+data/mission_spec/mission_spec_inst_5r_20w_01_deprecated.json
+data/mission_spec/mission_spec_inst_5r_20w_02.json
+data/mission_spec/mission_spec_inst_caylus_w21.json
+data/mission_spec/team_spec.json
+data/mission_spec/team_spec_inst_10r_20w.json
+data/mission_spec/team_spec_inst_5r_20w.json
+data/mission_spec/team_spec_inst_caylus_r5_w21.json
+data/mission_spec/team_spec_one_robot.json
+data/robots_spec/default_robots_spec.json
+data/robots_spec/robots_spec_caylus_r5_w21.json
+data/robots_spec/robots_spec_inst_10r_20w_01.json
+data/robots_spec/robots_spec_inst_3r_18w_01.json
+data/robots_spec/robots_spec_inst_5r_20w_01.json
+data/robots_spec/robots_spec_inst_5r_20w_01_save.json
+data/robots_spec/robots_spec_inst_5r_20w_02.json
+data/robots_spec/robots_spec_mh.json
+patrol_mission_spec/__init__.py
+patrol_mission_spec.egg-info/PKG-INFO
+patrol_mission_spec.egg-info/SOURCES.txt
+patrol_mission_spec.egg-info/dependency_links.txt
+patrol_mission_spec.egg-info/entry_points.txt
+patrol_mission_spec.egg-info/requires.txt
+patrol_mission_spec.egg-info/top_level.txt
+patrol_mission_spec.egg-info/zip-safe
+resource/patrol_mission_spec
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

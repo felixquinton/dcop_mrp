@@ -1,0 +1,193 @@
+{
+  "robot_1": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [1, 6, 11, 16, 21, 26, 31, 36, 5, 10, 15, 20, 25, 30, 35, 40]
+  },
+  "robot_2": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [2, 7, 12, 17, 22, 27, 32, 37, 1, 6, 11, 16, 21, 26, 31, 36]
+  },
+  "robot_3": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [3, 8, 13, 18, 23, 28, 33, 38, 2, 7, 12, 17, 22, 27, 32, 37]
+  },
+  "robot_4": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [4, 9, 14, 19, 24, 29, 34, 39, 3, 8, 13, 18, 23, 28, 33, 38]
+  },
+  "robot_5": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [5, 10, 15, 20, 25, 30, 35, 40, 4, 9, 14, 19, 24, 29, 34, 39]
+  },
+
+  "robot_6": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [1, 6, 11, 16, 21, 26, 31, 36, 5, 10, 15, 20, 25, 30, 35, 40]
+  },
+  "robot_7": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [2, 7, 12, 17, 22, 27, 32, 37, 1, 6, 11, 16, 21, 26, 31, 36]
+  },
+  "robot_8": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [3, 8, 13, 18, 23, 28, 33, 38, 2, 7, 12, 17, 22, 27, 32, 37]
+  },
+  "robot_9": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [4, 9, 14, 19, 24, 29, 34, 39, 3, 8, 13, 18, 23, 28, 33, 38]
+  },
+  "robot_10": {
+    "actions": [
+      "GoTo",
+      "AbstractAction"
+    ],
+    "robot_sensors": [
+        "camera",
+        "lidar"
+      ],
+    "robot_energy": 100000,
+    "robot_energy_cons": {"standby": 0.0001157, "move": 0.01},
+    "com_range": 50.0,
+    "com_stable": "auction",
+    "com_relay": true,
+    "robot_max_speed": {"x": 20.0, "y": 20.0, "z": 3.0},
+    "robot_spawn_pos": [50.0, 150.0],
+    "idleness_save_file": "idleness_data.csv",
+    "waypoint_blacklist": [5, 10, 15, 20, 25, 30, 35, 40, 4, 9, 14, 19, 24, 29, 34, 39]
+  }
+}

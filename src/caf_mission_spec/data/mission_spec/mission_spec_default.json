@@ -1,0 +1,14 @@
+{
+  "waypoint_1": {
+      "pos": [100, 200],
+      "neighbors": ["waypoint_2"]
+    },
+    "waypoint_2": {
+        "pos": [300, 200],
+        "neighbors": ["waypoint_1", "waypoint_3"]
+      },
+    "waypoint_3": {
+        "pos": [500, 200],
+        "neighbors": ["waypoint_2"]
+      }
+}
