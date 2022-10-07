@@ -565,6 +565,7 @@ class SimRobots(BaseSim):
 
     def _awaiting_dcop_allocation(self, r_id=None, verbose=False):
         self.simulation_timer.cancel()
+        start_time = time.time()
         self.solving_dcop_flag = True
         self.com_network.remove_integer_nodes(len(self.robots_list))
         components = [
@@ -620,6 +621,15 @@ class SimRobots(BaseSim):
                 self.r_allocation[str(r)] = tours[r]
             self.send_tours(tours)
         # A dirty way to wait until the robots have processed the DCOP results
+        dir = f"{self.first_path}{self.folder_str}"
+        file_name = "/computing_times.csv"
+        timer = time.time() - start_time
+        data_list = [self.simulation_time,
+                     timer]
+        try:
+            utils.add_row_to_csv(dir, file_name, data_list)
+        except Exception:
+            raise
         time.sleep(3)
         self.launch_dcop = False
         self.solving_dcop_flag = False
