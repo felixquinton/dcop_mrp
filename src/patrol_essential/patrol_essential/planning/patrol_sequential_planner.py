@@ -42,11 +42,9 @@ def plan_goto_item(item_hdl, robot_node, eps=0.1):
                     "y": last_action.target_position.y}
         last_waypoint = robot_node.nav_graph.convert_pos_into_node(
             (last_pos['x'], last_pos['y']), eps)
-        robot_node.get_logger().info(f"Has a last action, pos is {last_pos} and waypoint is {last_waypoint}.")
     else:
         last_waypoint = robot_node.nav_graph.convert_pos_into_node(
             robot_node.position, eps)
-        robot_node.get_logger().info(f"Has no last action, position is {robot_node.position} waypoint is {last_waypoint}.")
     try:
         path = robot_node.nav_graph.shortest_path(
             last_waypoint, goal_waypoint)[1:]

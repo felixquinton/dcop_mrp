@@ -18,7 +18,6 @@ def find_trivial_assignments(r_ids, w_ids, r_sen, w_req):
     trivial = {}
     unfeasible = []
     all_trivial = True
-    print(f'Able_robots: {able_robots}')
     for w, rs in able_robots.items():
         w_id = list(w_ids).index(w)
 
@@ -30,8 +29,6 @@ def find_trivial_assignments(r_ids, w_ids, r_sen, w_req):
 
         else:
             all_trivial = False
-
-    print("UNFEASIBLE", unfeasible)
 
     return {"all_trivial": all_trivial,
             "trivial_assignments": trivial,
@@ -54,20 +51,17 @@ def solve_dcop(r_ids, w_ids, r_sen, w_req, w_poses, G,
     for w in w_req_keys:
         if w not in w_ids:
             del w_req[w]
-    sim_node.get_logger().info(f"After deletion {w_req}")
     fta = find_trivial_assignments(r_ids, w_ids, r_sen, w_req)
-    sim_node.get_logger().info("After trivial search")
     is_trivial = fta["all_trivial"]
     pre_assignment = fta["trivial_assignments"]
     pre_assigned_tasks = {w_ids[w]: r for w, r in pre_assignment.items()}
     unfeasible_tasks = fta["unfeasible_tasks"]
     sim_node.get_logger().info(
-        f"Trivial: {pre_assignment}, pre assigned tasks {pre_assigned_tasks}")
+        f"Trivial: {pre_assignment}, Pre-assigned tasks {pre_assigned_tasks}")
     # sim_node.get_logger().info(f"Before unfeasible {nb_w}, {w_req}")
     for w in unfeasible_tasks:
         sim_node.get_logger().info(
             f"The unfeasible waypoint is at index {w} and is {w_ids[w]}")
-        sim_node.get_logger().info(f"At this point w_ids is {w_ids}")
         nb_w -= 1
         # del w_req[list(w_req.keys())[w]]
         # w_poses = np.delete(w_poses, w, axis=0)
@@ -76,28 +70,24 @@ def solve_dcop(r_ids, w_ids, r_sen, w_req, w_poses, G,
         nb_w -= 1
         # del w_req[list(w_req.keys())[w_ind]]
         # w_poses = np.delete(w_poses, w_ind, axis=0)
-    sim_node.get_logger().info(f"PREASSIGNMENT KEYS: {pre_assignment.keys()}")
     w_ids = np.delete(w_ids, unfeasible_tasks + list(pre_assignment.keys()))
-    sim_node.get_logger().info(f"w_ids after preassignment and unfeasibles: {w_ids}")
     feasible_w_req = {i: req for i, req in w_req.items()}
     if is_trivial:
         assignment_dic = json.dumps(
             {"assignment": {f'x_{w}': r for w, r in pre_assignment.items()}})
-        sim_node.get_logger().info(f"Assignment dic: {assignment_dic}.")
+        sim_node.get_logger().info(f"Assignment dict is: {assignment_dic}.")
         return (json.dumps(
             # {"assignment": {f'x_{w}': r for w, r in pre_assignment.items()}}),
             {"assignment": {}}),
             True, unfeasible_tasks, pre_assignment, pre_assigned_tasks)
     try:
         int_r_ids = [int(r)-1 for r in r_ids]
-        sim_node.get_logger().info(f"JUSTE AVANT BUG {int_r_ids}")
         write_dcop_yaml(
             int_r_ids, w_ids, r_sen, feasible_w_req, G,
             pre_assigned_tasks,
             algorithm=alg,
             instance_file_name=instance_file_name,
             distribution_file_name=distribution_file_name)
-        sim_node.get_logger().info("ITS ALL RIGHT ACTUALLY !")
     except Exception as e:
         raise e
     sim_node.get_logger().info("Starting DCOP")
@@ -122,7 +112,6 @@ def get_assignment_from_pydcop(sim_node, stdout, subteam_ids, waypoint_ids,
     :return assigment: dic, with keys being robot ids and values being
     lists of waypoint ids.
     """
-    print("ici", trivial)
     try:
         if not trivial:
             dic_output = json.loads(
@@ -130,26 +119,21 @@ def get_assignment_from_pydcop(sim_node, stdout, subteam_ids, waypoint_ids,
                     "\n", "").replace(" ", ""))
         else:
             dic_output = json.loads(stdout)
-        print("decodage")
         solution = dic_output["assignment"]
-        sim_node.get_logger().info(f"Solution DCOP: {solution, subteam_ids}")
+        sim_node.get_logger().info(f"DCOP solution: {solution, subteam_ids}")
         assignment = {}
-        sim_node.get_logger().info(f"Robots de la sous-équipe: {subteam_ids}")
-        sim_node.get_logger().info(f"Waypoints alloués: {waypoint_ids}")
+        sim_node.get_logger().info(f"Sub-team robot id(s): {subteam_ids}")
+        sim_node.get_logger().info(f"Waypoint(s) allocated: {waypoint_ids}")
         for w, r in solution.items():
             w_ind = int(w.split('_')[-1])
-            # sim_node.get_logger().info(f"Data before (w, w_ind, r, subteam_ids, waypoint_ids, assignment): {w, waypoint_ids[w_ind], r, subteam_ids, waypoint_ids, assignment}")
             r_id = int(subteam_ids[r])
-            # sim_node.get_logger().info(f"Affectation (w, r): {waypoint_ids[w_ind], r_id}")
             assignment[r_id] = assignment.get(
                 r_id, []) + [waypoint_ids[w_ind]]
-        print("là")
-        print("comment", pre_assigned_tasks)
         for w, r in pre_assigned_tasks.items():
             r_id = int(subteam_ids[r])
             sim_node.get_logger().info(f"Préallocation (w, r): {w, r_id}")
             assignment[r_id] = assignment.get(r_id, []) + [w]
-        sim_node.get_logger().info(f"get_assignment_from_pydcop {assignment}")
+        sim_node.get_logger().info(f"Assignment: {assignment}")
     except json.decoder.JSONDecodeError as e:
         sim_node.get_logger().error("It appears that pyDCOP did not return a"
                                     f"json str: {stdout}")
@@ -174,13 +158,11 @@ def compute_tours(graph, assignment, sim_node):
         # if there are less than 3 waypoints in the tour, order doesn't matter.
         if len(ws) <= 2:
             tours[r] = ws
-            sim_node.get_logger().info(f"cond tours {tours[r]} ws {ws}")
             continue
         # Finding the tour's waypoints' poses and indices.
         wps = [p for n, p in nx.get_node_attributes(
             graph, 'pos').items() if n in ws]
         w_inds = np.array([n for n in graph.nodes if n in ws])
-        sim_node.get_logger().info(f"w_inds {w_inds} ws {ws}")
         # Building the distance matrix.
         r_wps = np.repeat(
             wps, len(wps), axis=0).reshape(len(wps), len(wps), 2)
@@ -191,5 +173,5 @@ def compute_tours(graph, assignment, sim_node):
         tsp_tour, _ = solve_tsp_dynamic_programming(distance_matrix)
         tours[r] = w_inds[tsp_tour]
         sim_node.get_logger().info(
-            f"tours[r] {tours[r]}, tsp_tours {tsp_tour}")
+            f"TSP completed. Tour of {r}, is {tours[r]}")
     return tours

@@ -138,9 +138,9 @@ class SimpleSequentialPlan(Plan):
                 item_hdl = elem[0]
                 p_item_hdl = self.p_items_hdl[item_hdl.item_id]
                 actions = elem[1]
-                self.robot_node.get_logger().info(
-                    f"Actions to add: {actions}"
-                )
+                # self.robot_node.get_logger().info(
+                #     f"Actions to add: {actions}"
+                # )
                 # if actions = [], delete the plan items handler
                 # if not actions:
                 #     del self.p_items_hdl[item_hdl.item_id]
@@ -157,28 +157,21 @@ class SimpleSequentialPlan(Plan):
                                         item_hdl.target_position.y))
             robot_position = np.array((self.robot_node.position[0],
                                        self.robot_node.position[1]))
-            self.robot_node.get_logger().info(f"Voici les infos dans add_item: {np.linalg.norm(target_position-robot_position), self.robot_node.waypoint_targets}")
             if (np.linalg.norm(target_position-robot_position) > 0.1
                     or self.robot_node.waypoint_targets):
-                self.robot_node.get_logger().info(
-                    f"est rentré dans premier if et item_id est {item_hdl.item_id}"
-                    f" tandis que p_items_hdl is {self.p_items_hdl}.")
                 if item_hdl.item_id not in self.p_items_hdl:
-                    self.robot_node.get_logger().info("est rentré dans second if")
                     self.p_items_hdl[
                         item_hdl.item_id] = SequentialPlanItemHandler(item_hdl)
                     self.robot_node.get_logger().info(
-                        f"PLANNED {item_hdl.item_id}")
+                        f"Robot planned item: {item_hdl.item_id}.")
                     if not self.p_items_hdl[
                             item_hdl.item_id] in self.items_order:
-                        self.robot_node.get_logger().info("est rentré dans troisième if")
                         self.items_order.append(
                             self.p_items_hdl[item_hdl.item_id])
                 self.robot_node.stay_and_survey = None
             elif self.robot_node.method == "DCOP":
                 # Special case just to plan a waypoint on which a robot already
                 # is when receiving a DCOP plan.
-                self.robot_node.get_logger().info("Went through this weird if")
                 self.robot_node.to_plan_later.append(item_hdl)
                 self.robot_node.stay_and_survey = target_position
             else:
@@ -221,20 +214,16 @@ class SimpleSequentialPlan(Plan):
         verifying precondition if sequential, or current time if a temporal
         value is used.
         """
-        self.robot_node.get_logger().info("Inside execute_next_actions")
         for action_hdl in self.actions.values():
             if action_hdl.status == 1:
                 # an action is already running
-                self.robot_node.get_logger().info(
-                    "Returned because other action already running")
                 return
 
-        self.robot_node.get_logger().info(f"Searching in {self.actions_order}")
         for action_id in self.actions_order:
             action_hdl = self.actions[action_id]
             if action_hdl.status == 0:
                 self.robot_node.get_logger().info(
-                    f"Found action {action_id} that I can start")
+                    f"Robot starts executing action: {action_id}.")
                 self.robot_node.send_goal(action_hdl.goal_request)
                 action_hdl.status = 1
                 p_item_hdl = action_hdl.p_item_hdl_concerned
@@ -244,12 +233,12 @@ class SimpleSequentialPlan(Plan):
         if not self.actions_order:
             self.robot_node.stay_and_survey = self.robot_node.position
             self.robot_node.get_logger().info(
-                f"Stay and survey {self.robot_node.position}"
-                f" because actions order {self.actions_order}")
+                f"Starting to stay and survey at {self.robot_node.position}"
+                f" because actions order is empty: {self.actions_order}.")
             # If using auctions, append the item to the list of tasks to auction.
             if self.robot_node.method == "SI":
                 waypoint = self.robot_node.nav_graph.convert_pos_into_node(
-                    self.robot_node.position, 0.1)          
+                    self.robot_node.position, 0.1)
                 # Define item to sell
                 item = ItemDescription()
                 item.item_id = 'item_'+str(waypoint)
@@ -258,10 +247,10 @@ class SimpleSequentialPlan(Plan):
                     item.item_name = 'goto_start_pos'
                     item.item_type = 'GoTo'
                     item.item_data = ('{"target_position": {"x": '
-                                  + str(float(self.robot_node.position[0]))
-                                  + ', "y": '
-                                  + str(float(self.robot_node.position[1]))
-                                  + ', "z": 0.0}}')
+                                      + str(float(self.robot_node.position[0]))
+                                      + ', "y": '
+                                      + str(float(self.robot_node.position[1]))
+                                      + ', "z": 0.0}}')
                 self.robot_node.auctioneer_auction_to_start.append(item)
 
     def get_next_item(self):
@@ -282,9 +271,6 @@ class SimpleSequentialPlan(Plan):
         """
         Finds actions to be executed by the robot to complete a given item.
         """
-        # self.robot_node.get_logger().info(f"PlanItemHandler given as argument: {p_item_hdl, p_item_hdl.item_hdl.item_id}")
-        # for g, a in self.actions.items():
-            # self.robot_node.get_logger().info(f"Here I print every g, a, goal_id in get_actions_per_item: {g, a, a.p_item_hdl_concerned.item_hdl.item_id}")
         return {g: a for g, a in self.actions.items()
                 if a.p_item_hdl_concerned == p_item_hdl}
 

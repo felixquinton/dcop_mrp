@@ -224,19 +224,14 @@ class Robot(BaseRobot):
             self.auction_scheme = si.PatrolSIAuction(self)
 
     def survey_surroundings(self):
-        self.get_logger().info(f"Stay and survey: {self.stay_and_survey}")
         # If the robot stays at same waypoint for a long time, survey it.
         if self.simulation_time - self.last_pos_change > 60:
             self.stay_and_survey = self.nav_graph.convert_pos_into_node(
                 self.position, 0.1)
-
-        self.get_logger().warn(f"Waypoint targets was {self.waypoint_targets}")
-        self.get_logger().warn(f"Tasks to auction were {self.auctioneer_auction_to_start}")
         if self.method == "SI":
             if self.waypoint_targets:
                 if not self.robot_plan.actions_order:
                     self.plan_waypoints_by_id(self.waypoint_targets[0])
-
 
         if self.stay_and_survey is not None:
             waypoint_id = self.nav_graph.convert_pos_into_node(
@@ -294,20 +289,8 @@ class Robot(BaseRobot):
             else:
                 current_target = None
 
-            self.get_logger().info(f"Robot pos before: {self.position}.")
             self.position = waypoint_pos
-            self.get_logger().info(f"Robot pos after: {self.position}.")
-            # If the waypoint is a target different from the shadow target,
-            # but in the current targets, discard the shadow target
-            """
-            if (self.shadow_target is not None
-                    and waypoint in self.waypoint_targets
-                    and waypoint != self.shadow_target
-                    and self.waypoint_targets[0] == self.shadow_target):
-                self.waypoint_targets.remove(self.shadow_target)
-                self.shadow_target = None
-            """
-            
+
             # Define item to sell
             item = ItemDescription()
             item.item_id = 'item_'+str(waypoint)
@@ -322,17 +305,9 @@ class Robot(BaseRobot):
                                   + ', "z": 0.0}}')
 
             if self.method == "DCOP":
-                self.get_logger().info(f"DCOP ALLOC {self.current_dcop_alloc}")
-                self.get_logger().info(f"WAYPOINT {waypoint}")
                 self.get_logger().info(
-                    f"WAYPOINTS TARGETS {self.waypoint_targets}")
-                """
-                if len(self.waypoint_targets) > 1 and waypoint == self.waypoint_targets[1] and self.waypoint_targets[0] not in self.current_dcop_alloc:
-                    self.get_logger().info(f"Removing waypoint {self.waypoint_targets[0]} from waypoint targets {self.waypoint_targets} because already at {waypoint}.")
-                    self.waypoint_targets = self.waypoint_targets[1:]
-                    self.get_logger().info(f"Resulting in {self.waypoint_targets}")
-                """
-
+                    f"Arrived at waypoint: {waypoint}.\n"
+                    f"Targets are: {self.waypoint_targets}.")
 
             if self.waypoint_targets and waypoint == self.waypoint_targets[0]:
                 if self.method == "SSI":
@@ -360,7 +335,7 @@ class Robot(BaseRobot):
                     surveyed = waypoint
 
                 if (round(self.team_dest[waypoint]["date"], 2)
-                        != round(self.simulation_time, 2)):
+                        != round(self.simulation_time, 2)) and self.method != "DCOP":
                     self.get_logger().warn(
                         f"""Waypoint {waypoint} was reached at time
                         {self.simulation_time} but scheduled at
@@ -397,7 +372,7 @@ class Robot(BaseRobot):
                 # self.evaluate_team_dest()
                 self.must_replan = False
 
-            self.get_logger().info("Already moving on !")
+            # self.get_logger().info("Moving on !")
 
             self.execute_bundles_callback()
 
@@ -762,13 +737,15 @@ class Robot(BaseRobot):
           data.
         :param topic_name:
         """
-        self.get_logger().info(f"Received position {msg.position.x, msg.position.y}.")
+        # self.get_logger().info(
+        # f"Received position {msg.position.x, msg.position.y}.")
         previous_pos = self.position
         current_pos = (msg.position.x, msg.position.y)
         if previous_pos != current_pos[0]:
             self.last_pos_change = self.simulation_time
-        else:
-            self.get_logger().info(f"Increasing self.last_pos_change: {self.simulation_time, self.last_pos_change}.")
+        # else:
+        #     self.get_logger().info(
+        #        f"Increasing self.last_pos_change: {self.simulation_time, self.last_pos_change}.")
         self.position = current_pos
 
     def receive_dcop_plan(self, msg, topic_name=None, verbose=True):
@@ -790,49 +767,24 @@ class Robot(BaseRobot):
         tasks = all_tours[str(digit_id)]
         self.current_dcop_alloc = [t for t in tasks]
         if verbose:
-            self.get_logger().info(f"Tasks {tasks}")
-            self.get_logger().info(f"DCOP ALLOC {self.current_dcop_alloc}")
-            self.get_logger().info(f"Obtained before {self.obtained_bundles}")
+            self.get_logger().info(f"Received tasks: {tasks} from DCOP.")
             self.get_logger().info(
-                f"Plan before {self.waypoint_targets}")
-
-        self.get_logger().info("LA")
-
-        # Rarely tasks vanished and I don't know how.
-        # I add them arbitrarily here...
-        """
-        if digit_id in all_tours.keys():
-            for waypoint in self.waypoint_targets:
-                vanished_waypoint = True
-                for tour in all_tours.values():
-                    for w in tour:
-                        if waypoint == w:
-                            vanished_waypoint = False
-                if vanished_waypoint:
-                    tasks[digit_id].append(waypoint)
-                    self.get_logger().warn(
-                        f"Had to append waypoint {waypoint} as it vanished.")
-        """
+                f"Current plan is {self.waypoint_targets}")
 
         # self.plan_waypoints_by_id(tasks, reset=True)
         if self.waypoint_targets:
-            self.waypoint_targets = [self.waypoint_targets[0]] + self.current_dcop_alloc
+            self.waypoint_targets = [
+                self.waypoint_targets[0]] + self.current_dcop_alloc
         else:
             self.waypoint_targets = self.current_dcop_alloc
         if not self.robot_plan.actions_order:
             self.plan_waypoints_by_id(self.waypoint_targets[0])
 
-        self.get_logger().info("APRES")
-
         if verbose:
-            self.get_logger().info(f"Obtained after {self.obtained_bundles}")
-            self.get_logger().info(f"Obtained after {self.robot_plan.actions_order}")
             self.get_logger().info(
-                f"Plan after {self.waypoint_targets}")
+                f"New plan is {self.waypoint_targets}")
 
     def plan_waypoints_by_id(self, tasks, reset=False, eps=0.10, position_reached=None):
-
-        self.get_logger().info(f"ICI, with reset = {reset}, tasks = {tasks}, targets = {self.waypoint_targets}.")
 
         positions = nx.get_node_attributes(self.nav_graph, "pos")
 
@@ -847,15 +799,15 @@ class Robot(BaseRobot):
         if tasks:
             first_target = tasks[0]
             first_position = positions[first_target]
-            self.get_logger().info(f"CHERCHE ICI: {first_target, first_position}")
             if ((float(first_position[0])-self.position[0])**2
-                    +(float(first_position[1])-self.position[1])**2)**.5 < eps:
+                    + (float(first_position[1])-self.position[1])**2)**.5 < eps:
                 if len(self.waypoint_targets) > 1:
                     # Handling rare instances in which waypoitn targets includes only
                     # occurences of the same waypoint.
                     if self.waypoint_targets[1] == first_target:
                         self.waypoint_targets = self.waypoint_targets[1:]
-                    self.waypoint_targets = self.waypoint_targets[1:] + [self.waypoint_targets[0]]
+                    self.waypoint_targets = self.waypoint_targets[1:] + [
+                        self.waypoint_targets[0]]
                     self.plan_waypoints_by_id([self.waypoint_targets[0]])
                     return
 
@@ -869,24 +821,20 @@ class Robot(BaseRobot):
             bid_msg = Bid()
             bid_msg.bid = [0.0]
             item_data = ('{"target_position": {"x": '
-                        + str(float(positions[w_id][0]))
-                        + ', "y": '
-                        + str(float(positions[w_id][1]))
-                        + ', "z": 0.0}}')
+                         + str(float(positions[w_id][0]))
+                         + ', "y": '
+                         + str(float(positions[w_id][1]))
+                         + ', "z": 0.0}}')
             item_list = [ItemDescription(item_id=f'waypoint_{w_id}',
-                                        item_name=f'waypoint_{w_id}',
-                                        item_type='GoTo',
-                                        item_data=item_data)]
+                                         item_name=f'waypoint_{w_id}',
+                                         item_type='GoTo',
+                                         item_data=item_data)]
             bundle_id = np.random.randint(1e9)
             bundle_description = BundleDescription(
                 bundle_id=str(bundle_id), item_bundle=item_list)
             bid_msg.bundle_description = bundle_description
             bundle_hdl = BundleHandlerBidder(bid_msg)
             self.obtained_bundles[bundle_id] = bundle_hdl
-            self.get_logger().info(
-                f"targets, id {self.waypoint_targets, w_id}")
-            self.get_logger().info(
-                f"before add items, plan was {self.robot_plan.p_items_hdl}")
             # Add target to list iif it is inside only once.
             self.robot_plan.add_items_from_bundle_hdl(bundle_hdl)
             count_w_id_occurences = self.waypoint_targets.count(w_id)
@@ -895,13 +843,8 @@ class Robot(BaseRobot):
                 if count_w_id_occurences == 1:
                     if w_id == self.waypoint_targets[0]:
                         self.waypoint_targets.append(w_id)
-                        self.get_logger().info("Count was 1 but w_id was in fist place.")
-                    else:
-                        self.get_logger().info("Count was 1 and w_id was not fist, so ignore.")
                 else:
-                    self.get_logger().info("Count was 0.")
                     self.waypoint_targets.append(w_id)
-                self.get_logger().info(f"Et du coup waypoint_targets inclu: {self.waypoint_targets}")
             self.execute_bundles_callback()
 
     def update_team_dest(self, msg, topic_name=None):

@@ -42,6 +42,7 @@ class SimRobots(BaseSim):
     def __init__(self):
 
         self.solving_dcop_flag = False
+        self.launch_dcop = False
 
         super().__init__(init_sim_robots=False, init_simulation_timer=False)
 
@@ -83,6 +84,7 @@ class SimRobots(BaseSim):
         self.tasks_to_reallocate = {
             r_name.split('_')[-1]: [] for r_name in self.robots_spec_data
         }
+        self.tried_to_reallocate = {}
 
         self.time_factor = self.mission_spec_data["time_factor"]
         self.simulation_timer_period = self.mission_spec_data["simu_period"]
@@ -125,7 +127,6 @@ class SimRobots(BaseSim):
             r_name.split('_')[-1]: [] for r_name in self.robots_spec_data}
         self.r_allocation['1'] = [
             w for w in self.navigation_graph.nodes]
-        print(self.r_allocation)
 
         # Init space graph
         self.shortest_paths = dict(nx.shortest_path_length(
@@ -222,7 +223,7 @@ class SimRobots(BaseSim):
         NEEDS to be surcharged with your use case (and so you SimulatedRobot
         classes)
         """
-        pos = [119.91915745825732, 203.15187127554503]  #  [200.0, 200.0]   # [0.0, 0.0] 
+        pos = [200.0, 200.0]  # [119.91915745825732, 203.15187127554503]  #  [200.0, 200.0]   # [0.0, 0.0]
         for robot_id in self.robots_list:
             self.simulated_robots[robot_id] = SimulatedRobot(
                 robot_id, self, position=pos)
@@ -365,7 +366,7 @@ class SimRobots(BaseSim):
             {msg.body_msg.node_id: msg.body_msg.sensor_types})
         if (self.method == "DCOP"
                 and msg.body_msg.discoverer_id == msg.header.sender_id):
-            self.get_logger().warn(
+            self.get_logger().info(
                 f"Launched a DCOP solve after an event on node {msg.body_msg.node_id}"
                 f"discovered by robot {msg.body_msg.discoverer_id}")
             self._awaiting_dcop_allocation(msg.body_msg.discoverer_id)
@@ -398,16 +399,19 @@ class SimRobots(BaseSim):
             #     {self.awaiting_goal_request}.""")
             self.awaiting_goal_request.remove(robot_id)
 
-        self.get_logger().info(f"Received termination request from {robot_id} while list is {self.awaiting_goal_request}")
         if self.awaiting_for_goto and not self.awaiting_goal_request:
-            self.get_logger().info("Reset timer")
-            self.simulation_timer.reset()
+            if not self.launch_dcop:
+                # self.get_logger().info("Reset timer")
+                self.simulation_timer.reset()
+            else:
+                self.get_logger().info(
+                    "Did not reset timer in goto request termination to wait "
+                    "for a DCOP.")
             # self.awaiting_for_goto = False
             # self.get_logger().info(
             #     "Reset simu timer from receive goto term in simu node")
 
     def publish_event_msgs(self):
-        self.get_logger().error("Me voilà dans event msgs...")
         topic_ns = 'event'
         for robot_id in self.robots_list:
 
@@ -547,9 +551,9 @@ class SimRobots(BaseSim):
             if (len(robot.actions_to_update) == 0
                     and robot.robot_id in self.awaiting_goal_request):
                 self.awaiting_goal_request.remove(robot.robot_id)
-                self.get_logger().info(
-                    f"""Removed {robot.robot_id} cause it had no goals.
-                    It had goals {robot.actions_to_update}""")
+                # self.get_logger().info(
+                #     f"""Removed {robot.robot_id} cause it had no goals.
+                #     It had goals {robot.actions_to_update}""")
 
     def _awaiting_goto_request_timer(self):
         # self._remove_robots_without_goal_from_awaiting_resquest_list()
@@ -580,12 +584,10 @@ class SimRobots(BaseSim):
                     for t in ts:
                         if t not in tasks:
                             tasks = np.concatenate([tasks, ts])
-            self.get_logger().warn(f"Tasks before unique: {tasks}")
 
             tasks = np.unique(np.int16(tasks))
-            self.get_logger().warn(f"Starting DCOP procedure with tasks: {tasks}")
-            self.get_logger().warn(f"Graph pos: {nx.get_node_attributes(self.navigation_graph, 'pos')}")
-            self.get_logger().warn(f"{type(list(nx.get_node_attributes(self.navigation_graph, 'pos').keys())[0])}")
+            self.get_logger().warn(
+                f"Starting DCOP procedure with tasks: {tasks}")
 
             stdout, is_trivial, unfeasible_tasks, pre_assignment, pre_assigned_tasks = \
                 dcop_utils.solve_dcop(
@@ -600,14 +602,16 @@ class SimRobots(BaseSim):
                     self.navigation_graph,
                     sim_node=self)
             for r in component:
+                for w in self.tasks_to_reallocate[r]:
+                    if w not in unfeasible_tasks:
+                        self.tasks_to_reallocate[r].remove(w)
                 for w in unfeasible_tasks:
                     if tasks[w] not in self.tasks_to_reallocate[r]:
                         self.tasks_to_reallocate[r].append(tasks[w])
-            self.get_logger().info(f"Tasks before removing some tasks: {tasks}.")
+                        self.tried_to_reallocate[tasks[w]] = self.tried_to_reallocate.get(
+                            tasks[w], []) + [r for r in component]
             tasks = np.delete(tasks, unfeasible_tasks)
-            self.get_logger().info(f"Tasks after removing unfeasible {unfeasible_tasks}: {tasks}.")
             tasks = np.setdiff1d(tasks, list(pre_assigned_tasks.keys()))
-            self.get_logger().info(f"Tasks after removing preassignment {pre_assigned_tasks, list(pre_assigned_tasks.keys())}: {tasks}.")
             assignment = dcop_utils.get_assignment_from_pydcop(
                 self, stdout, component, tasks, pre_assigned_tasks, is_trivial)
             tours = dcop_utils.compute_tours(
@@ -617,12 +621,13 @@ class SimRobots(BaseSim):
             self.send_tours(tours)
         # A dirty way to wait until the robots have processed the DCOP results
         time.sleep(3)
+        self.launch_dcop = False
         self.solving_dcop_flag = False
         self.simulation_timer.reset()
         if verbose:
             self.get_logger().info(f"DCOP stdout {stdout}.")
-            print(f"Tours: {tours}")
-            print(f"r allocation: {self.r_allocation}")
+            self.get_logger().info(f"Tours: {tours}")
+            self.get_logger().info(f"r allocation: {self.r_allocation}")
 
     def send_tours(self, tours):
         """Send planned tours (sequence of waypoints) to the robot nodes.
@@ -651,20 +656,34 @@ class SimRobots(BaseSim):
         self.publish_msg(rlb_goal_msg,
                          ['sim_node_publisher', 'rlb', 'targets'])
 
-    def run_simulation(self, verbose=True, display_clock=False):
+    def _check_dcop_realloc(self):
+        components = [
+            list(c)
+            for c in nx.strongly_connected_components(self.com_network)]
+        for c in components:
+            for r1 in c:
+                for r2 in c:
+                    if r1 != r2:
+                        for w in self.tasks_to_reallocate[r1]:
+                            if r2 not in self.tried_to_reallocate[w]:
+                                self.get_logger().info(
+                                    f"I returned True and {r1} because {r2, w, self.tasks_to_reallocate, self.tried_to_reallocate}")
+                                return (True, r1)
+        return (False, None)
+
+    def run_simulation(self, verbose=False, display_clock=False):
         """
         This function runs the simulation.
         """
         # return
         self.simulation_timer.cancel()
-        self.get_logger().info(f"Run Simulation avec flag {self.solving_dcop_flag}")
         if self.solving_dcop_flag:
             return
-        self.get_logger().info(f"Still running run simulation")
         with self.lock:
 
             event_type, event_time = self._find_next_increment()
-            self.get_logger().info(f"Found event {event_type}, at time {event_time}")
+            self.get_logger().info(
+                f"Found event {event_type}, at time {event_time}")
 
             if event_type == "auction":
                 self.awaiting_for_auction = True
@@ -739,6 +758,7 @@ class SimRobots(BaseSim):
                     f"{self.first_path}{self.folder_str}"
                     "/com_graph.csv")
                 self.com_network.log(self.simulation_time, log_file)
+                self.launch_dcop, dcop_starter = self._check_dcop_realloc()
 
             self.publish_ground_truth()
             if event_type == "dcop":
@@ -749,7 +769,11 @@ class SimRobots(BaseSim):
             elif event_type in ("none", "step"):
                 self.get_logger().info(f"J'ai step avec {event_type}")
                 self.simulation_timer.reset()
-            self.get_logger().info("Finished a simulation iteration.")
+            # self.get_logger().info("Finished a simulation iteration.")
+            if self.launch_dcop:
+                self.get_logger().info(
+                    f"Started a DCOP reallocation from robot {dcop_starter}.")
+                self._awaiting_dcop_allocation(dcop_starter)
 
 
 def main(args=None):
