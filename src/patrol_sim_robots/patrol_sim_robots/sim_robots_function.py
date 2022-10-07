@@ -584,6 +584,8 @@ class SimRobots(BaseSim):
 
             tasks = np.unique(np.int16(tasks))
             self.get_logger().warn(f"Starting DCOP procedure with tasks: {tasks}")
+            self.get_logger().warn(f"Graph pos: {nx.get_node_attributes(self.navigation_graph, 'pos')}")
+            self.get_logger().warn(f"{type(list(nx.get_node_attributes(self.navigation_graph, 'pos').keys())[0])}")
 
             stdout, is_trivial, unfeasible_tasks, pre_assignment, pre_assigned_tasks = \
                 dcop_utils.solve_dcop(

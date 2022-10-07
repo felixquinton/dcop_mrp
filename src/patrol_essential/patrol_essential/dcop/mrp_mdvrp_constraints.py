@@ -45,7 +45,11 @@ def tsp_cost_csts(nb_r, vars, w_poses):
     return tl_csts
 
 
-def tsp_cost_csts_implicit(nb_r, vars, G, w_ids, trivial_wps=[]):
+def tsp_cost_csts_implicit(nb_r, vars, G, w_ids,
+                           trivial_wps=[],
+                           visit_csts_type="implicit",
+                           coms_csts_type="tsp",
+                           w_poses=None):
     """Defines the intentional csts to minimize tour length with implicit model
     Note that the method used to compute the TSP impacts the time perf.
     "greedy" converges in O(E**2), while default uses "christofides" (O(E**3))
@@ -53,55 +57,107 @@ def tsp_cost_csts_implicit(nb_r, vars, G, w_ids, trivial_wps=[]):
     :param vars: dic, descriptions for pyDCOP vars
     :param G: navigation graph
     :param w_ids: list of the waypoints concerned by the DCOP
+    :coms_csts_type: str from {"tsp", "discwp"}, the
+    type of constraints. "tsp" is the basic min tour length.
+    "discwp" adds constraints to distribute central waypoints.
+    :param w_poses: 2D array of waypoint positions.
     """
     tl_csts = {}
-    for r in range(nb_r):
-        tl_csts[f"cost_{r}"] = {
-            "type": "intention",
-            "function": (
-                "if 'solve_tsp_local_search' not in dir():\n"
-                " from python_tsp.heuristics import solve_tsp_local_search\n"
-                # "if 'solve_tsp_dynamic_programming' not in dir():\n"
-                # " from python_tsp.exact import "
-                # "solve_tsp_dynamic_programming\n"
-                # "import csv\n"
-                # "import time\n"
-                "if 'numpy' not in dir(): import numpy\n"
-                "if 'networkx' not in dir(): import networkx\n"
-                "v = []\n"
-                "w_ids = [" + ",".join([f"{w}" for w in w_ids]) + "]\n"
-                "vars = [" + ",".join([f"{v}" for v in vars.keys()]) + "]\n"
-                "G = networkx.from_edgelist(" + str(nx.to_edgelist(G)) + ")\n"
-                f"v = [wid for w, wid in enumerate(w_ids) if vars[w] == {r}]\n"
-                f"v += [wid for wid in {trivial_wps}]\n"
-                "if len(v) <= 1: return 0\n"
-                # "start = time.time()\n"
-                # "tsp = traveling_salesman_problem(G, 'greedy', nodes=v)\n"
-                # "distance = networkx.classes.function.path_weight("
-                # "G, tsp, 'weight')\n"
-                "table = numpy.zeros((len(v), len(v)))\n"
-                "for ind1, t1 in enumerate(v):\n"
-                "   for ind2, t2 in enumerate(v[ind1+1:]):\n"
-                "       path = networkx.shortest_path(G, source=t1, "
-                "target=t2, weight='weight')\n"
-                "       dist = networkx.path_weight(G, path, "
-                "weight='weight')\n"
-                "       table[ind1, ind1+ind2+1] = dist\n"
-                "       table[ind1+ind2+1, ind1] = dist\n"
-                # "end_sp = time.time() - start\n"
-                "permutation, distance = solve_tsp_local_search(table, "
-                "perturbation_scheme='ps1')\n"  # heuristic solving
-                # ")\n"  # exact solving
-                # "end_tsp = time.time() - start\n"
-                # "with open('TSP_timer_large_improved_caylus_dp.csv', 'a+', "
-                # "newline='') as csvfile:\n"
-                # "    spamwriter = csv.writer(csvfile, delimiter=' ', "
-                # quotechar='|', quoting=csv.QUOTE_MINIMAL)\n"
-                # "    spamwriter.writerow([str(end_sp), str(end_tsp), "
-                # "str(len(v))])\n"
-                "return distance**4"
-                )
-            }
+    if coms_csts_type == "tsp":
+        for r in range(nb_r):
+            tl_csts[f"cost_{r}"] = {
+                "type": "intention",
+                "function": (
+                    "if 'solve_tsp_local_search' not in dir():\n"
+                    " from python_tsp.heuristics import solve_tsp_local_search\n"
+                    # "if 'solve_tsp_dynamic_programming' not in dir():\n"
+                    # " from python_tsp.exact import "
+                    # "solve_tsp_dynamic_programming\n"
+                    # "import csv\n"
+                    # "import time\n"
+                    "if 'numpy' not in dir(): import numpy\n"
+                    "if 'networkx' not in dir(): import networkx\n"
+                    "v = []\n"
+                    "w_ids = [" + ",".join([f"{w}" for w in w_ids]) + "]\n"
+                    "vars = [" + ",".join([f"{v}" for v in vars.keys()]) + "]\n"
+                    "G = networkx.from_edgelist(" + str(nx.to_edgelist(G)) + ")\n"
+                    f"v = [wid for w, wid in enumerate(w_ids) if vars[w] == {r}]\n"
+                    f"v += [wid for wid in {trivial_wps}]\n"
+                    "if len(v) <= 1: return 0\n"
+                    # "start = time.time()\n"
+                    # "tsp = traveling_salesman_problem(G, 'greedy', nodes=v)\n"
+                    # "distance = networkx.classes.function.path_weight("
+                    # "G, tsp, 'weight')\n"
+                    "table = numpy.zeros((len(v), len(v)))\n"
+                    "for ind1, t1 in enumerate(v):\n"
+                    "   for ind2, t2 in enumerate(v[ind1+1:]):\n"
+                    "       path = networkx.shortest_path(G, source=t1, "
+                    "target=t2, weight='weight')\n"
+                    "       dist = networkx.path_weight(G, path, "
+                    "weight='weight')\n"
+                    "       table[ind1, ind1+ind2+1] = dist\n"
+                    "       table[ind1+ind2+1, ind1] = dist\n"
+                    # "end_sp = time.time() - start\n"
+                    "permutation, distance = solve_tsp_local_search(table, "
+                    "perturbation_scheme='ps1')\n"  # heuristic solving
+                    # ")\n"  # exact solving
+                    # "end_tsp = time.time() - start\n"
+                    # "with open('TSP_timer_large_improved_caylus_dp.csv', 'a+', "
+                    # "newline='') as csvfile:\n"
+                    # "    spamwriter = csv.writer(csvfile, delimiter=' ', "
+                    # quotechar='|', quoting=csv.QUOTE_MINIMAL)\n"
+                    # "    spamwriter.writerow([str(end_sp), str(end_tsp), "
+                    # "str(len(v))])\n"
+                    "return distance**4"
+                    )
+                }
+    elif coms_csts_type == "discwp":
+        for r in range(nb_r):
+            tl_csts[f"cost_{r}"] = {
+                "type": "intention",
+                "function": (
+                    "if 'solve_tsp_local_search' not in dir():\n"
+                    " from python_tsp.heuristics import solve_tsp_local_search\n"
+                    "if 'numpy' not in dir(): import numpy\n"
+                    "if 'networkx' not in dir(): import networkx\n"
+                    "v = []\n"
+                    "w_ids = [" + ",".join([f"{w}" for w in w_ids]) + "]\n"
+                    "vars = [" + ",".join([f"{v}" for v in vars.keys()]) + "]\n"
+                    "G = networkx.from_edgelist(" + str(nx.to_edgelist(G)) + ")\n"
+                    f"v = [wid for w, wid in enumerate(w_ids) if vars[w] == {r}]\n"
+                    f"v += [wid for wid in {trivial_wps}]\n"
+                    "if len(v) <= 1: return 0\n"
+                    "table = numpy.zeros((len(v), len(v)))\n"
+                    "for ind1, t1 in enumerate(v):\n"
+                    "   for ind2, t2 in enumerate(v[ind1+1:]):\n"
+                    "       path = networkx.shortest_path(G, source=t1, "
+                    "target=t2, weight='weight')\n"
+                    "       dist = networkx.path_weight(G, path, "
+                    "weight='weight')\n"
+                    "       table[ind1, ind1+ind2+1] = dist\n"
+                    "       table[ind1+ind2+1, ind1] = dist\n"
+                    "permutation, distance = solve_tsp_local_search(table, "
+                    "perturbation_scheme='ps1')\n"
+                    "tour_poses = numpy.empty((len(v), 2))\n"
+                    f"w_poses = [" + ",".join([f"{p}" for p in w_poses.values()]) + "]\n"
+                    "for i, w in enumerate(v):\n"
+                    "   tour_poses[i] = w_poses[int(w)]\n"
+                    "grav_center = numpy.mean(tour_poses, axis=0)\n"
+                    "central_waypoint = None\n"
+                    "min_dist = 1e6\n"
+                    "for w, p in enumerate(w_poses):\n"
+                    "   dist = numpy.linalg.norm(grav_center-numpy.array(p))\n"
+                    "   if dist < min_dist:\n"
+                    "       min_dist = dist\n"
+                    "       central_waypoint = w\n"
+                    f"penalty = 0\n"
+                    "for i, w in enumerate(w_ids):\n"
+                    "   if w == central_waypoint:\n"
+                    f"       if vars[i] == {r}:\n"
+                    "           penalty = 1e9\n"
+                    "return distance**4 + penalty"
+                    )
+                }
     return tl_csts
 
 

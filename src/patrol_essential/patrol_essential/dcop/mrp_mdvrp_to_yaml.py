@@ -4,6 +4,7 @@ in order to write down a pyDCOP instance YAML file.
 
 import yaml
 import numpy as np
+import networkx as nx
 from patrol_essential.dcop.mrp_mdvrp_constraints import (
     visit_csts, visit_csts_extensional, tsp_cost_csts_implicit)
 
@@ -44,7 +45,8 @@ def write_dcop_yaml(r_ids, w_ids, r_sen, w_req, G,
 
 
 def create_dcop(r_ids, w_ids, r_sen, w_req, G, trivial_wps,
-                algorithm="mgm2", visit_csts_type="implicit"):
+                algorithm="mgm2", visit_csts_type="implicit",
+                coms_csts_type="discwp"):
     nb_w = len(w_ids)
     nb_r = len(r_ids)
 
@@ -55,7 +57,7 @@ def create_dcop(r_ids, w_ids, r_sen, w_req, G, trivial_wps,
     print("Vars created")
     csts = create_constraints_flat(
        nb_w, nb_r, vars, visit_csts_type,
-       G, w_ids, trivial_wps)
+       G, w_ids, trivial_wps, coms_csts_type)
     print("Constraints created")
     agents = create_agents(nb_r)
     print("Agents created")
@@ -93,22 +95,23 @@ def create_vars(w_ids, nb_r, visit_csts_type, domains):
 
 
 def create_constraints_flat(nb_w, nb_r, vars, visit_csts_type, G,
-                            w_ids, trivial_wps):
+                            w_ids, trivial_wps, coms_csts_type):
     """Builds the constraints.
     :param nb_w: int, number of waypoints of the mission
     :param nb_r: int, number of robots of the team
     :param vars: dic built using create_vars, describes the DCOP variables
+    :coms_csts_type: str from {"tsp", "discwp"}, the
+    type of constraints. "tsp" is the basic min tour length.
+    "discwp" adds constraints to distribute central waypoints.
+    :param path_lengths: dict, the shortest_paths in the navigation_graph
     :visit_csts_type: str from {"intentional", "extensional", "implicit"}, the
     type of constraints expressing that waypoints must be visited exactly once.
-    :param path_lengths: dict, the shortest_paths in the navigation_graph
     """
-    if visit_csts_type == "intentional":
-        csts = visit_csts(nb_w, vars)
-    elif visit_csts_type == "extensional":
-        csts = visit_csts_extensional(nb_w, nb_r, vars)
-
     try:
-        csts = tsp_cost_csts_implicit(nb_r, vars, G, w_ids, trivial_wps)
+        w_poses = nx.get_node_attributes(G, 'pos')
+        csts = tsp_cost_csts_implicit(
+            nb_r, vars, G, w_ids, trivial_wps,
+            visit_csts_type, coms_csts_type, w_poses)
     except Exception:
         raise ValueError("Error while creating DCOP tsp cost constraints.")
     return csts
