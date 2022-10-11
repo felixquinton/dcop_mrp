@@ -3,7 +3,7 @@ import networkx as nx
 import json
 import subprocess
 
-from python_tsp.exact import solve_tsp_dynamic_programming
+from python_tsp.heuristics import solve_tsp_local_search
 from patrol_essential.dcop.mrp_mdvrp_to_yaml import write_dcop_yaml
 
 
@@ -170,7 +170,8 @@ def compute_tours(graph, assignment, sim_node):
             r_wps, axes=(1, 0, 2)), axis=2)
         # Computing TSP tour.
         sim_node.get_logger().info("Starting to compute TSP.")
-        tsp_tour, _ = solve_tsp_dynamic_programming(distance_matrix)
+        tsp_tour, _ = solve_tsp_local_search(
+            distance_matrix, max_processing_time=30)
         tours[r] = w_inds[tsp_tour]
         sim_node.get_logger().info(
             f"TSP completed. Tour of {r}, is {tours[r]}")

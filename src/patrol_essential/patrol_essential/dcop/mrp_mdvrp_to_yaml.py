@@ -46,7 +46,7 @@ def write_dcop_yaml(r_ids, w_ids, r_sen, w_req, G,
 
 def create_dcop(r_ids, w_ids, r_sen, w_req, G, trivial_wps,
                 algorithm="mgm2", visit_csts_type="implicit",
-                coms_csts_type="discwp"):
+                coms_csts_type="tsp"):
     nb_w = len(w_ids)
     nb_r = len(r_ids)
 
@@ -161,8 +161,8 @@ def create_domains(w_ids, r_ids, w_req, r_sen, visit_csts_type="implicit"):
     """
     if visit_csts_type == "implicit":
         res = {f'd_{w}': {"values": [r_ind for r_ind, r in enumerate(r_ids)
-                                       if set(w_req[w]) & set(r_sen[r])]
-                            }
+                                     if set(w_req[w]) & set(r_sen[r])]
+                          }
                for w in w_ids}
     else:
         # TODO: Sensor match for non implicit models

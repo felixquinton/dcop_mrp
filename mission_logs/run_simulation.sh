@@ -35,17 +35,23 @@ for PARAM in ${!ParamHashArray[@]}; do
         fi
 done
 
-mkdir ${folder}
-mkdir ${folder}/${ParamHashArray["scenario_type"]}_p${ParamHashArray["range"]}
-mkdir ${folder}/${ParamHashArray["scenario_type"]}_p${ParamHashArray["range"]}/${bid_val}
 
+RangeArray=( 75 100 60 200 )
 
-for (( NUMBER=0; NUMBER<=$nb_inst; NUMBER++ ))
+for RANGE in ${RangeArray[*]};
 do
-        echo $NUMBER
-        timeout ${ParamHashArray["timeout"]}s ros2 launch patrol_sim_robots ${ParamHashArray["launch_file"]} scenario_path:="generated_scenarios/${ParamHashArray["scenario_type"]}/scenario_${NUMBER}/data.json" communication_range:=${ParamHashArray["range"]} scenario_id:=${NUMBER} method:=${method} auction_com_cost:=${ParamHashArray["bid_val"]} folder:=${folder}
-	
-	mv ${folder}/${NUMBER} ${folder}/${ParamHashArray["scenario_type"]}_p${ParamHashArray["range"]}/${bid_val}
-	
-	ros2 daemon stop
+
+        mkdir ${folder}
+        mkdir ${folder}/${ParamHashArray["scenario_type"]}_p$RANGE
+        mkdir ${folder}/${ParamHashArray["scenario_type"]}_p$RANGE/${bid_val}
+        
+        for (( NUMBER=1; NUMBER<=$nb_inst; NUMBER++ ))
+        do
+                echo $NUMBER
+                timeout ${ParamHashArray["timeout"]}s ros2 launch patrol_sim_robots ${ParamHashArray["launch_file"]} scenario_path:="generated_scenarios/${ParamHashArray["scenario_type"]}/scenario_${NUMBER}/data.json" communication_range:=$RANGE scenario_id:=${NUMBER} method:=${method} auction_com_cost:=${ParamHashArray["bid_val"]} folder:=${folder}
+	        
+	        mv ${folder}/${NUMBER} ${folder}/${ParamHashArray["scenario_type"]}_p$RANGE/${bid_val}
+	        
+	        ros2 daemon stop
+        done
 done
