@@ -36,7 +36,7 @@ for PARAM in ${!ParamHashArray[@]}; do
 done
 
 
-RangeArray=( 75 100 60 200 )
+RangeArray=( 75 100 60 )
 
 for RANGE in ${RangeArray[*]};
 do
