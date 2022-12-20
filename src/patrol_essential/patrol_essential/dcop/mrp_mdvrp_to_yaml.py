@@ -43,7 +43,9 @@ def write_dcop_yaml(r_ids, w_ids, r_sen, w_req, G,
     except Exception as e:
         raise e
 
-
+# Very dirty, but the fastest way to use either tsp dcop or discwp
+# DCOP (i.e., DCOP that accounts for connectivity) is to change the
+# option here...
 def create_dcop(r_ids, w_ids, r_sen, w_req, G, trivial_wps,
                 algorithm="mgm2", visit_csts_type="implicit",
                 coms_csts_type="tsp"):
