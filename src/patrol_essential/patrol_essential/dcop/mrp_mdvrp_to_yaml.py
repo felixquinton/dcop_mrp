@@ -48,7 +48,8 @@ def write_dcop_yaml(r_ids, w_ids, r_sen, w_req, G,
 # option here...
 def create_dcop(r_ids, w_ids, r_sen, w_req, G, trivial_wps,
                 algorithm="mgm2", visit_csts_type="implicit",
-                coms_csts_type="tsp"):
+                coms_csts_type="discwp"):
+                #coms_csts_type="tsp"):
     nb_w = len(w_ids)
     nb_r = len(r_ids)
 

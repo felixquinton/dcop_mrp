@@ -45,7 +45,7 @@ do
         mkdir ${folder}/${ParamHashArray["scenario_type"]}_p$RANGE
         mkdir ${folder}/${ParamHashArray["scenario_type"]}_p$RANGE/${bid_val}
         
-        for (( NUMBER=1; NUMBER<=$nb_inst; NUMBER++ ))
+        for (( NUMBER=0; NUMBER<=$nb_inst; NUMBER++ ))
         do
                 echo $NUMBER
                 timeout ${ParamHashArray["timeout"]}s ros2 launch patrol_sim_robots ${ParamHashArray["launch_file"]} scenario_path:="generated_scenarios/${ParamHashArray["scenario_type"]}/scenario_${NUMBER}/data.json" communication_range:=$RANGE scenario_id:=${NUMBER} method:=${method} auction_com_cost:=${ParamHashArray["bid_val"]} folder:=${folder}
