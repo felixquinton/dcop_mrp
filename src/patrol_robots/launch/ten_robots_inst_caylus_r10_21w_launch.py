@@ -35,8 +35,8 @@ def generate_launch_description():
             output="screen",
             emulate_tty=True,
             # to open the node in another term
-            prefix="" if i == 6 else 'xterm -T ' + \
-            f'robot_{i}' + '_node' + ' -e',
+            # prefix="" if i == 6 else 'xterm -T ' + \
+            # f'robot_{i}' + '_node' + ' -e',
             parameters=[
                 {"robot_id": f'robot_{i}',
                  "team_members_file_name": "team_spec_inst_caylus_r10_w21.json",
@@ -58,7 +58,7 @@ def generate_launch_description():
             output="screen",
             emulate_tty=True,
             # to open the node in another term
-            prefix='xterm -T ' + f'robot_{i}' + '_com_node' + ' -e',
+            # prefix='xterm -T ' + f'robot_{i}' + '_com_node' + ' -e',
             parameters=[
                 {"robot_id": f'robot_{i}',
                  "team_members_file_name": "team_spec_inst_caylus_r10_w21.json",

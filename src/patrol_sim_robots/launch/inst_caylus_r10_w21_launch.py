@@ -64,24 +64,24 @@ def generate_launch_description():
                  "folder": folder}
             ],
         ),
-        launch_ros.actions.Node(
-        package='patrol_interface',
-        executable='patrol_interface_node',
-        output='screen',
-        name='interface_node',
-        emulate_tty=True,
-        prefix='xterm -e',
-        parameters=[
-             {"robot_id": "interface_patrol",
-              "team_members_file_name": "team_spec_inst_caylus_r10_w21.json",
-              "robots_spec_file_name": "robots_spec_inst_5r_20w_01.json",
-              "mission_spec_file_path": "mission_spec_inst_caylus_w21.json",
-              "communication_range": communication_range,
-              "scenario_path": scenario_path,
-              "method": method,
-              "scenario_id": scenario_id}
-        ],
-        ),
+#        launch_ros.actions.Node(
+#        package='patrol_interface',
+#        executable='patrol_interface_node',
+#        output='screen',
+#        name='interface_node',
+#        emulate_tty=True,
+#        # prefix='xterm -e',
+#        parameters=[
+#             {"robot_id": "interface_patrol",
+#              "team_members_file_name": "team_spec_inst_caylus_r10_w21.json",
+#              "robots_spec_file_name": "robots_spec_inst_5r_20w_01.json",
+#              "mission_spec_file_path": "mission_spec_inst_caylus_w21.json",
+#              "communication_range": communication_range,
+#              "scenario_path": scenario_path,
+#              "method": method,
+#              "scenario_id": scenario_id}
+#        ],
+#        ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
                 package_prefix, '/ten_robots_inst_caylus_r10_21w_launch.py']),
